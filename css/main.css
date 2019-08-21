@@ -8,7 +8,11 @@
 @import 'about.css';
 
 body{
-    background: #000;
+    /* background: #000; */
     margin:0;
     padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    overflow-x:hidden;
+    background-color: #f8f9fa;
 }
+

@@ -8,140 +8,236 @@
     
     <!-- BOOTSTRAP LINK -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Exa|Roboto&display=swap" rel="stylesheet">
     <!-- CSS FILES -->
     <link rel="stylesheet" href="css/main.css">
     <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Subrayada:700|Open+Sans:700|Orbitron:700|Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700&display=swap" rel="stylesheet">
+
 </head>
 <body>
     
     <!-- NAVBAR -->
+   
     
-    <nav class="navbar navbar-expand-small navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>          
-        </div>
-      </nav>
-    
+   
     <!-- HEADER -->
     <div class="jumbotron">
+      <div id='particleCanvas'>
+        <canvas id="particle-canvas"></canvas>
+      </div>
+      <div class="containerHam">
+        <nav class='navBar'>
+          <div class='hamburgerMenu'>
+            <div class='line line-1'></div>
+            <div class='line line-2'></div>
+            <div class='line line-3'></div>
+        </div>
+      </nav>
+      
+      <div class='navItems'>
+        <ul class='navList'>
+          <li class='navItem'>
+            <a href="#" class='navLink'>Home</a>
+          </li>
+          <li class='navItem'>
+            <a href="#about" class='navLink'>About</a>
+          </li>
+          <li class='navItem'>
+              <a href="#projects" class='navLink'>Projects</a>
+          </li>
+          <li class='navItem'>
+            <a href="#contacts" class='navLink'>Contact</a>
+          </li>
+        </ul>
+      </div>
+            
+      </div>
+
+        <div id='nameTitle'>
         <h1 class='name'>Justin Allen</h1>
         <h2 class='name' id='jobTitle'>Web Developer</h2>
         
-        <div class="container">
-            <div class='sphere'>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class='sphere'>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class='sphere'>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class='sphere'>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>         
-        </div>       
+        </div>
       </div>
+      
     
-    <!-- ABOUT -->
+      <!-- ABOUT -->
 
-    <div id='about'>
+    <section id='about'>
         <div class='container'>
             <h3>About Me</h3>
+            <hr>
             <div class='row'>
-                <div class='col-sm-4'>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                </div>
-                <div class='col-sm-4'>
-                    <!-- <img src="./assets/Dogs.jpg" alt="dogs"> -->
-                </div>
-               
+                <div class='col-sm-12'>
+                    <p>Hi my name is Justin Allen. I am a JavaScript Developer welcoming all opportunities to advance my knowledge in JS development.</p> 
+                     <p>Prior to becoming a JS developer, I worked 5 years in Semi-conductor manufacturing where I helped develop a new memory node called 3D XPoint (See <a href="https://searchstorage.techtarget.com/definition/3D-XPoint">Link</a> for more details). These chips are now being used to create some of the worlds fastest SSDs. All Intel Optane products are using these chips. </p>
+                     <p>I have a B.S. in Mechanical Engineering and minor in Mathematics from Boise State University. I will also be graduating from Eleven Fifty Academy’s JavaScript Immersive Bootcamp in October 2019. 
+                    </p>
+                    <div id='resume'>
+                      <a href="https://www.linkedin.com/in/justin-allen-b9038354/" target='_blank'><p><i class="fab fa-linkedin"></i></p></a> 
+                      <a href="https://github.com/Jallen0827" target="_blank"><p><i class="fab fa-github"></i></p></a>
+                      <a href="assets/JustinAllen_Resume_2019_V2.pdf" target='_blank'><p><i class="fas fa-user-tie"></i>Resume</p></a>
+                    </div>
+                    <hr>
+                    <div class='skills'>
+                      
+                      <span><i class="fab fa-html5 skill"></i></span>
+                      <span><i class="fab fa-css3-alt skill"></i></span>
+                      <span><i class="fab fa-js-square skill"></i></span>
+                    </div>
+                </div>                              
             </div>
         </div>
-    </div>
+    </section>
 
+       <!-- PROJECTS -->
+<section id='projects'>
+
+    <div class="album ">
+        <div class="projectContainer">
+          <br>
+          <br> 
+          <h3 class='technicalPort'>Technical Portfolio</h3>
+          <hr>
+          <h4 class='technicalPort'>Samples of my work as a developer</h4>
+          <br>
+          <br>
+          <div class="row">
+              <div class="col-md-4 projects" title="CSS Creature">
+                  <p class="port_titles">- A simple HTML & CSS character -</p>
+                  <a href="https://codepen.io/Jallen0827/pen/rXwmNG" target='_blank'>
+                    <div class="card mb-4 shadow-sm">
+                      <img src="assets/CSS_Creature.JPG" class="bd-placeholder-img card-img-top project">
+                      <div class="overlay">
+                        <p>HTML & CSS to created Creature/Cartoon</p>
+                      </div>                  
+                    </div>
+                  </a>                 
+              </div>
+
+              <div class="col-md-4 projects" title="Static Layout">
+                  <p class="port_titles">- Static Website Layout -</p>
+                  <a href="https://jallen0827.github.io/Static-Layout/" target='_blank'>
+                  <div class="card mb-4 shadow-sm">
+                    <img src="assets/StaticLayout.JPG" class="bd-placeholder-img card-img-top project">
+                    <div class="overlay">
+                      <p>Used HTML & CSS, to recreate a website layout</p>
+                    </div>                  
+                  </div>
+                </a>
+                </div>
+
+                <div class="col-md-4 projects" title="API Challenge">
+                    <p class="port_titles">- SpaceX API Project -</p>
+                    <a href="https://jallen0827.github.io/apiChallenge/" target='_blank'>
+                    <div class="card mb-4 shadow-sm">
+                      <img src="assets/APIChallenge.JPG" class="bd-placeholder-img card-img-top project">
+                      <div class="overlay">
+                        <p>Website that pulls from SpaceX open API to generate content for a web application</p>
+                      </div>                  
+                    </div>
+                  </a>
+                  </div>
+                                    
+                  <div class="col-md-4 projects" title="Blue Badge">
+                      <p class="port_titles">- Blue Badge Project -</p>
+                      <a href="#">
+                      <div class="card mb-4 shadow-sm">
+                        <img src="assets/underConstructionBlue.jpg" class="bd-placeholder-img card-img-top project">
+                        <div class="overlay">
+                          <p>TBD</p>
+                        </div>                  
+                      </div>
+                      </a>
+                    </div>
+
+            <div class="col-md-4 projects" title="Red Badge">
+              <p class="port_titles">- Red Badge Project -</p>
+              <a href="#">
+              <div class="card mb-4 shadow-sm">
+                  <img src="assets/underConstructionRed.jpg" class="bd-placeholder-img card-img-top project">
+                  <div class="overlay">
+                  <p>TBD</p>
+                  </div>                  
+              </div></a>
+            </div> 
+            
+            <div class="col-md-4 projects" title="jabberwocky project">
+                <p class="port_titles">- jabberwocky project -</p>
+                <a href="#">
+                <div class="card mb-4 shadow-sm">
+                    <img src="assets/mysteryProject.jpg" class="bd-placeholder-img card-img-top project">
+                    <div class="overlay">
+                    <p>The coolest project ever!</p>
+                    </div>                  
+                </div></a>
+              </div>
+
+          </div>
+      </div>
+    </div>
+           
+</section>    
     <!-- CONTACT -->
+<section id ='contacts'>
     <div class='contact'>
+        <div class='col-md-4'>
+            <address>
+                CONTACT INFO:<br>
+                Justin Allen<br> 
+                <i class="fas fa-map-pin"></i> Indianapolis, IN 46240<br>
+                <i class="fas fa-phone"></i>208-284-6758<br>
+                <i class="fas fa-envelope"></i>JustinAllen0827@gmail.com<br>
+                </address>
+        </div>
         <div class='container'>
-            <h2 class='text-center text-uppercase'>Contact Me</h2>
-            <br>
+            
             <div class='row'>
-                <div class='col-12'>
-    <form class='text-center' id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/JustinAllen0827@gmail.com" method="post">
-        <fieldset id="fs-frm-inputs">
-        <div class='form-group'>
-          <label for="full-name">Full Name</label>
-          <input class='form-control' type="text" name="name" id="full-name" placeholder="First and Last" required="">
+
+                <div class='col-8'>
+                    <h2 class='text-center text-uppercase'>Contact Me</h2>
+                    <br>
+            <form class='text-center' id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/JustinAllen0827@gmail.com" method="post">
+              <fieldset id="fs-frm-inputs">
+              <div class='form-group'>
+                
+                <input class='form-control' type="text" name="name" id="full-name" placeholder="Your Name" required="">
+              </div>
+              <div class='form-group'>
+                
+                <input class='form-control' type="email" name="_replyto" id="email-address" placeholder="Your Email" required="">
+              </div>
+              <div class='form-group'>
+                
+                <textarea class='form-control' rows="5" name="message" id="message" placeholder="Your Message" required=""></textarea>
+                <input  type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
+              </div>
+              </fieldset>
+            <!-- <input type="submit" value="Submit"> -->
+            <div class='text-center'>
+              <button type="submit" class="btn btn-dark">Send Message</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+</section>
+
+<!-- FOOTER SECTION -->
+    <footer>
+        <div class="containerFooter">
+            <p id="center">
+                <a href="#">
+                    <i class="fas fa-angle-double-up"></i> Back to top</a>
+            </p>
         </div>
-        <div class='form-group'>
-          <label for="email-address">Email Address</label>
-          <input class='form-control' type="email" name="_replyto" id="email-address" placeholder="email@domain.tld" required="">
-        </div>
-        <div class='form-group'>
-          <label for="message">Message</label>
-          <textarea class='form-control' rows="5" name="message" id="message" placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus." required=""></textarea>
-          <input  type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
-        </div>
-        </fieldset>
-        <!-- <input type="submit" value="Submit"> -->
-        <div class='text-center'>
-           <button type="submit" class="btn btn-dark">Send Message</button>
-        
-      </form>
-    </div>
-    <br>
-    <br>
-    </div>
-    </div>
-    </div> 
-    </div>
+    </footer>
+   
 
     <!-- BOOTSTRAP JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -150,5 +246,9 @@
     
     <!-- Main Js -->
     <script src='js/main.js'></script>
+    <script src='js/canvas.js'></script>
+
+    <!-- FONTAWESOME -->
+    <script src="https://kit.fontawesome.com/3867889ed0.js"></script>
 </body>
 </html>

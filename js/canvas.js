@@ -1,141 +1,135 @@
-function randomNormal(o){    
-    // console.log(o);    
-    let r,a,n,e;
-    // console.log(o.mean, o.dev);
-    let l=o.mean;
-    let t=o.dev;
-    
-        do{
-            n=2*Math.random()-1 //pseudo-random number in the range 0–1 
-            
-            a=2*Math.random()-1;
-            
-            r= a*a+n*n; //creating random r values
-            
-        }
-        while(r>=1); //do while loops will run once before checking condition. 
-    
-    e=a*Math.sqrt(-2*Math.log(r)/r);
-    
-    return t*e+l
+const canvas = document.querySelector('canvas');
+const c = canvas.getContext('2d')
+
+canvas.width = innerWidth
+canvas.height = innerHeight
+
+// Event Listeners
+// addEventListener('mouseover', growStar)
+
+addEventListener('resize', function () {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    init();
+});
+
+//Objects
+function MiniStar (x, y, radius, color){
+    this.x= x,
+    this.y= y,
+    this.radius= Math.random()*radius,
+    this.color= color,
+    this.velocity = {
+        x: Math.random() *(7),
+        y: Math.random() *(7)-5
+    },
+    this.ttl = 300,
+    this.opacity = 1
+}
+
+MiniStar.prototype.draw = function () {
+    c.save()
+    c.beginPath()
+    c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false)
+    c.fillStyle = this.color
+    c.fillStyle = `rgba(227, 234, 239, ${this.opacity})`
+    c.shadowColor ='#E3EAEF'
+    c.shadowBlur = 20
+    c.fill()
+    c.closePath()
+    c.restore()
+}
+
+MiniStar.prototype.update = function () {
+    this.draw()
+    this.x += this.velocity.x
+    this.y += this.velocity.y
+    this.ttl -= 1
+    this.opacity -= 1/this.ttl
+}
+
+// function growStar(e){
+//     // console.log('it worked')
+//     mouseX = e.clientX
+//     mouseY = e.clientY
+//     if(mouseX < canvas.width/2 -350 && mouseY < canvas.height/2 -150){
+//         console.log(`Your Mouse Position Is ${mouseX} and ${mouseY}`)
         
+//     }
+// }
+
+function createMountainRange(mountainAmount, height, color){
+    for (let i = 0; i < mountainAmount; i++) {
+        const mountainWitdh = canvas.width/mountainAmount
+        c.beginPath()       
+        c.moveTo(i*mountainWitdh,canvas.height)
+        c.lineTo(i*mountainWitdh + mountainWitdh + canvas.width*0.1, canvas.height)
+        c.lineTo(i*mountainWitdh + mountainWitdh/2, canvas.height - height - groundHeight)
+        c.lineTo(i * mountainWitdh- canvas.width*0.1, canvas.height)
+        c.fillStyle = color
+        c.fill()
+        c.closePath()
+    }
 }
 
-const NUM_PARTICLES = 600;
-const PARTICLE_SIZE = 2; // View heights
-const SPEED = 20000; // Milliseconds
+//Implementation
+const backgroundGradient = c.createLinearGradient(0,0,0,canvas.height)
+backgroundGradient.addColorStop(0, '#171E26')
+backgroundGradient.addColorStop(1, '#3F586B')
+let stars
+let miniStars
+let backgroundStars
+let groundHeight = canvas.height *0.1
+let ticker = 0
 
-let particles = [];
+function init(){
+    stars = []
+    miniStars = []
+    backgroundStars = []
 
-function rand(low, high) {
-  return Math.random() * (high - low);
+    for (let i = 0; i < 1; i++) {
+        miniStars.push(new MiniStar(30, canvas.height/2, 3)) //new => creates a new object
+    }
+
+    for (let i=0; i<300; i++){
+        const x = Math.random()*canvas.width
+        const y = Math.random()*canvas.height
+        const radius = Math.random()* 3
+        backgroundStars.push(new MiniStar(x,y,radius, 'white'))
+    }
+
 }
 
-function createParticle(canvas) {
-  const colour = {
-    r: 255,
-    g: randomNormal({ mean: 125, dev: 20 }),
-    b: 50,
-    a: rand(0, 1),
-  };
-  return {
-    x: -2,
-    y: -2,
-    diameter: Math.max(0, randomNormal({ mean: PARTICLE_SIZE, dev: PARTICLE_SIZE / 2 })),
-    duration: randomNormal({ mean: SPEED, dev: SPEED * 0.1 }),
-    amplitude: randomNormal({ mean: 16, dev: 2 }),
-    offsetY: randomNormal({ mean: 0, dev: 10 }),
-    arc: Math.PI * 2,
-    startTime: performance.now() - rand(0, SPEED), //returns a DOMHighResTimeStamp, measured in milliseconds.
-    colour: `rgba(${colour.r}, ${colour.g}, ${colour.b}, ${colour.a})`,
-  }
-}
+//Animation Loop
+function animate(){
+    requestAnimationFrame(animate)
+    c.fillStyle = backgroundGradient
+    c.fillRect(0,0, canvas.width, canvas.height)
 
-function moveParticle(particle, canvas, time) {
-  const progress = ((time - particle.startTime) % particle.duration) / particle.duration;
-  
-  return {
-    ...particle,
-    x: progress,
-    y: ((Math.sin(progress * particle.arc) * particle.amplitude) + particle.offsetY),
-  };
-}
-
-function drawParticle(particle, canvas, ctx) {
-  canvas = document.getElementById('particle-canvas');
-  const vh = canvas.height / 100;
-
-  ctx.fillStyle = particle.colour;
-  ctx.beginPath();
-  ctx.ellipse(
-    particle.x * canvas.width,
-    particle.y * vh + (canvas.height / 2),
-    particle.diameter * vh,
-    particle.diameter * vh,
-    0,
-    0,
-    2 * Math.PI
-  );
-  ctx.fill();
-  
-}
-
-function draw(time, canvas, ctx) {
-  // Move particles
-  particles.forEach((particle, index) => {
-    particles[index] = moveParticle(particle, canvas, time);
-  })
-
-  // Clear the canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Draw the particles
-  particles.forEach((particle) => {
-    drawParticle(particle, canvas, ctx);
-  })
-
-  // Schedule next frame
-  requestAnimationFrame((time) => draw(time, canvas, ctx)); //tells browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint
-                        //time is DOMHighResTimeStamp 
-}
-
-function initializeCanvas() {
-  let canvas = document.getElementById('particle-canvas');
-  canvas.width = canvas.offsetWidth * window.devicePixelRatio; //window.devicePixelRatio returns screen pixel sizes
-  canvas.height = canvas.offsetHeight * window.devicePixelRatio; //offsetWidth/height is element size+Border
-  let ctx = canvas.getContext("2d");
-  
-
-//   window.addEventListener('resize', () => {  //Don't think you need this because would only run if function was called 
-//     canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-//     canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-//     ctx = canvas.getContext("2d");
-//   })
-
-  return [canvas, ctx];
-}
-
-function startAnimation() {
-  const [canvas, ctx] = initializeCanvas();
-
-  // Create a bunch of particles
-  for (let i = 0; i < NUM_PARTICLES; i++) {
-    particles.push(createParticle(canvas)); //creates an array of objects with particle info
-  }
-  
-  requestAnimationFrame((time) => draw(time, canvas, ctx));
-};
-
-// Start animation when document is loaded
-(function () {
-  if (document.readystate !== 'loading') {
-    startAnimation();
-  } else {
-    document.addEventListener('DOMContentLoaded', () => {
-      startAnimation();
+    miniStars.forEach((miniStar,index) => {
+        miniStar.update()
+        if(miniStar.ttl ==0){
+            miniStars.splice(index, 1)
+        }
     })
-  }
-}());
 
+    backgroundStars.forEach(backgroundStar => {
+        backgroundStar.draw()
+    })
 
+    createMountainRange(1, canvas.height*0.7, '#384551')
+    createMountainRange(2, canvas.height*0.5, '#2B3843')
+    createMountainRange(3, canvas.height*0.3, '#26333E')
+    c.fillStyle = '#182028'
+    c.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight)
+
+    ticker++
+    if (ticker%5 == 0){
+        miniStars.push(new MiniStar(Math.random()*canvas.width, Math.random()*canvas.height, 4 ))
+    }
+
+}
+
+init();
+animate();
 
